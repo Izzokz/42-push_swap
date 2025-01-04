@@ -33,6 +33,7 @@ void	ft_swap(long *i, long *j);
 void	ft_realloc_list(t_stk *stk);
 void	ft_dealloc_list(t_stk *stk);
 void	ft_exit(t_stacks *stacks);
+int		is_sorted(t_stacks *stacks);
 void	sa(t_stacks *stacks);
 void	sb(t_stacks *stacks);
 void	ss(t_stacks *stacks);
@@ -44,5 +45,6 @@ void	rr(t_stacks *stacks);
 void	rra(t_stacks *stacks);
 void	rrb(t_stacks *stacks);
 void	rrr(t_stacks *stacks);
+void	ft_sort(t_stacks *stacks);
 
 #endif
