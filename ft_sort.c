@@ -107,7 +107,7 @@ void	ft_sort(t_stacks *stacks)
 		i.len = stacks->a.len;
 		while (++(i.j) < i.len)
 		{
-			if (((stacks->a.list[0] >> i.i) & 1) == 0)
+			if (((stacks->a.list[i.j] >> i.i) & 1) == 0)
 				pb(stacks);
 			else if (i.j <= stacks->a.len / 2)
 				ra(stacks);
