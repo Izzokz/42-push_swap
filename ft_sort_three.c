@@ -14,6 +14,9 @@
 
 void	ft_sort_three(t_stacks *stacks)
 {
+	if (stacks->a.list[0] < stacks->a.list[1]
+		&& stacks->a.list[1] < stacks->a.list[2])
+		return ;
 	if (stacks->a.list[0] > stacks->a.list[1]
 		&& stacks->a.list[1] > stacks->a.list[2])
 	{
