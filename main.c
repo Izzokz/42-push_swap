@@ -12,22 +12,6 @@
 
 #include "push_swap.h"
 
-/*
-static void	ft_print_stacks(t_stacks *stacks)
-{
-	int	i;
-
-	i = -1;
-	ft_printf("a:\n");
-	while (++i < stacks->a.len)
-		ft_printf("\t%i\n", stacks->a.list[i]);
-	i = -1;
-	ft_printf("b:\n");
-	while (++i < stacks->b.len)
-		ft_printf("\t%i\n", stacks->b.list[i]);
-}
-*/
-
 static int	valid_numbers(t_stk a)
 {
 	t_ints	i;
@@ -133,6 +117,7 @@ int	main(int argc, char **argv)
 	stacks.a = a;
 	stacks.b = b;
 	ft_parse_args(&stacks, argc, argv);
+	ft_sort(&stacks);
 	free(stacks.a.list);
 	free(stacks.b.list);
 }
