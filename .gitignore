@@ -1,2 +1,4 @@
 *.o
 *.d
+tester/
+./checker_linux

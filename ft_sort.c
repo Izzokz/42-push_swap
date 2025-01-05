@@ -42,53 +42,30 @@ static int	get_bit_len(t_stacks *stacks)
 		if (stacks->a.list[i] > max)
 			max = stacks->a.list[i];
 	len = 0;
-	while (max >> len)
-		len++;
+	while (max >> ++len)
+		;
 	return (len);
 }
 
-static int	find_min_index(t_stacks *stacks)
+static void	ft_sort_b(t_stacks *stacks, int bit_len, int step)
 {
-	int	min;
-	int	min_index;
-	int	i;
+	t_ints	i;
 
-	min = stacks->a.list[0];
-	min_index = 0;
-	i = -1;
-	while (++i < stacks->a.len)
+	i.i = -1;
+	while (++(i.i) < bit_len)
 	{
-		if (stacks->a.list[i] < min)
+		i.j = -1;
+		i.len = stacks->b.len;
+		while (++(i.j) < i.len)
 		{
-			min = stacks->a.list[i];
-			min_index = i;
+			if (((stacks->b.list[0] >> i.i) & 1) == 0)
+				pa(stacks);
+			else if (i.i == step && stacks->a.len > i.j)
+				rr(stacks);
+			else
+				rb(stacks);
 		}
 	}
-	return (min_index);
-}
-
-static void	brute_force(t_stacks *stacks, int size)
-{
-	int	min_index;
-
-	if (size == 2)
-		return (ra(stacks));
-	else if (size == 5)
-	{
-		min_index = find_min_index(stacks);
-		while (min_index-- > 0)
-			ra(stacks);
-		pb(stacks);
-		min_index = find_min_index(stacks);
-		while (min_index-- > 0)
-			ra(stacks);
-		pb(stacks);
-		brute_force(stacks, 3);
-		pa(stacks);
-		pa(stacks);
-		return ;
-	}
-	return (ft_sort_three(stacks));
 }
 
 void	ft_sort(t_stacks *stacks)
@@ -98,7 +75,7 @@ void	ft_sort(t_stacks *stacks)
 	if (is_sorted(stacks))
 		return ;
 	if (stacks->a.len == 2 || stacks->a.len == 3 || stacks->a.len == 5)
-		return (brute_force(stacks, stacks->a.len));
+		return (ft_brute_force(stacks, stacks->a.len));
 	i.width = get_bit_len(stacks);
 	i.i = -1;
 	while (++(i.i) < i.width)
@@ -107,14 +84,11 @@ void	ft_sort(t_stacks *stacks)
 		i.len = stacks->a.len;
 		while (++(i.j) < i.len)
 		{
-			if (((stacks->a.list[i.j] >> i.i) & 1) == 0)
+			if (((stacks->a.list[0] >> i.i) & 1) == 0)
 				pb(stacks);
-			else if (i.j <= stacks->a.len / 2)
-				ra(stacks);
 			else
-				rra(stacks);
+				ra(stacks);
 		}
-		while (stacks->b.len > 0)
-			pa(stacks);
+		ft_sort_b(stacks, i.width, i.i);
 	}
 }

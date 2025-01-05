@@ -44,7 +44,7 @@ void	rr(t_stacks *stacks);
 void	rra(t_stacks *stacks);
 void	rrb(t_stacks *stacks);
 void	rrr(t_stacks *stacks);
-void	ft_sort_three(t_stacks *stacks);
+void	ft_brute_force(t_stacks *stacks, int size);
 void	ft_sort(t_stacks *stacks);
 
 #endif
