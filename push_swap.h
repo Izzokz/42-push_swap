@@ -29,6 +29,7 @@ typedef struct s_stacks
 }		t_stacks;
 
 void	ft_void_param(const char *param, t_stacks *stacks);
+void	ft_ntor(t_stacks *stacks);
 long	ft_atol(const char *str);
 void	ft_swap(long *i, long *j);
 void	ft_realloc_list(t_stk *stk);

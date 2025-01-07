@@ -55,6 +55,7 @@ void	ft_sort(t_stacks *stacks)
 		return ;
 	if (stacks->a.len == 2 || stacks->a.len == 3 || stacks->a.len == 5)
 		return (ft_brute_force(stacks, stacks->a.len));
+	ft_ntor(stacks);
 	i.width = get_bit_len(stacks);
 	i.i = -1;
 	while (++(i.i) < i.width && !is_sorted(stacks))
