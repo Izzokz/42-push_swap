@@ -1,4 +1,5 @@
 *.o
 *.d
 tester/
+visualizer/
 ./checker_linux

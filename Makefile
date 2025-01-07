@@ -1,6 +1,6 @@
 NAME = push_swap
 
-SRC = main.c operation_set1.c operation_set2.c operation_set3.c operation_utils.c ft_atol.c ft_sort.c brute_force.c
+SRC = main.c operation_set1.c operation_set2.c operation_set3.c operation_utils.c ft_atol.c ft_sort.c brute_force.c ft_void_param.c
 OBJ = $(SRC:.c=.o)
 DEP = $(SRC:.c=.d)
 FT_PRINTF = 010_FT_PRINTF/libftprintf.a

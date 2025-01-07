@@ -47,27 +47,6 @@ static int	get_bit_len(t_stacks *stacks)
 	return (len);
 }
 
-static void	ft_sort_b(t_stacks *stacks, int bit_len, int step)
-{
-	t_ints	i;
-
-	i.i = -1;
-	while (++(i.i) < bit_len)
-	{
-		i.j = -1;
-		i.len = stacks->b.len;
-		while (++(i.j) < i.len)
-		{
-			if (((stacks->b.list[0] >> i.i) & 1) == 0)
-				pa(stacks);
-			else if (i.i == step && stacks->a.len > i.j)
-				rr(stacks);
-			else
-				rb(stacks);
-		}
-	}
-}
-
 void	ft_sort(t_stacks *stacks)
 {
 	t_ints	i;
@@ -78,7 +57,7 @@ void	ft_sort(t_stacks *stacks)
 		return (ft_brute_force(stacks, stacks->a.len));
 	i.width = get_bit_len(stacks);
 	i.i = -1;
-	while (++(i.i) < i.width)
+	while (++(i.i) < i.width && !is_sorted(stacks))
 	{
 		i.j = -1;
 		i.len = stacks->a.len;
@@ -89,6 +68,7 @@ void	ft_sort(t_stacks *stacks)
 			else
 				ra(stacks);
 		}
-		ft_sort_b(stacks, i.width, i.i);
+		while (stacks->b.len)
+			pa(stacks);
 	}
 }

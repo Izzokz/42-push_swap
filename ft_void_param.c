@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   ft_void_param.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kzhen-cl <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/04 15:57:58 by kzhen-cl          #+#    #+#             */
-/*   Updated: 2025/01/04 15:57:59 by kzhen-cl         ###   ########.fr       */
+/*   Created: 2025/01/07 10:45:52 by kzhen-cl          #+#    #+#             */
+/*   Updated: 2025/01/07 10:45:53 by kzhen-cl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long	ft_atol(const char *str)
+void	ft_void_param(const char *param, t_stacks *stacks)
 {
-	long	number;
-	int		index;
-	int		sign;
+	int	i;
+	int	spaces;
 
-	number = 0;
-	index = -1;
-	sign = 1;
-	if (str[0] == '-' || str[0] == '+')
+	i = -1;
+	spaces = 0;
+	while (param[++i])
+		if (param[i] == ' ')
+			spaces++;
+	if (!i || spaces == i)
 	{
-		index++;
-		if (str[0] == '-')
-			sign = -1;
+		ft_printf_fd("Error\n", 2);
+		ft_exit(stacks);
 	}
-	while (str[++index])
-	{
-		if (ft_isdigit(str[index]))
-			number = number * 10 + str[index] - '0';
-		else
-			return ((long)INT_MAX + 1);
-	}
-	if (index == 1 && (str[0] == '-' || str[0] == '+'))
-		return ((long)INT_MAX + 1);
-	return (number * sign);
 }

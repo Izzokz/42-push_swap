@@ -16,7 +16,7 @@ static int	valid_numbers(t_stk a)
 {
 	t_ints	i;
 
-	i.i = 0;
+	i.i = -1;
 	while (++(i.i) < a.len)
 	{
 		if (a.list[i.i] < INT_MIN || a.list[i.i] > INT_MAX)
@@ -39,7 +39,8 @@ static int	numeric_args(char **chain)
 		i.j = -1;
 		while (chain[i.i][++(i.j)])
 			if (!ft_isdigit(chain[i.i][i.j])
-				&& (i.j == 0 && chain[i.i][i.j] != '-'))
+				&& (i.j != 0 || (chain[i.i][i.j] != '-'
+					&& chain[i.i][i.j] != '+')))
 				return (0);
 	}
 	return (1);
@@ -52,7 +53,7 @@ static void	ft_split_trans_a(t_stacks *stacks, char **split, char **temp)
 	free(*temp);
 	if (!numeric_args(split))
 	{
-		ft_printf("Error\n");
+		ft_printf_fd("Error\n", 2);
 		ft_free_rlines(&split);
 		ft_exit(stacks);
 	}
@@ -79,6 +80,7 @@ static void	ft_parse_args(t_stacks *stacks, int argc, char **argv)
 	i = 0;
 	while (++i < argc)
 	{
+		ft_void_param(argv[i], stacks);
 		temp = gnlxio_ft_strjoinfree(&temp, &(char *){ft_strdup(" ")});
 		if (temp[ft_strlen(temp) - 1] != ' ')
 		{
@@ -93,7 +95,7 @@ static void	ft_parse_args(t_stacks *stacks, int argc, char **argv)
 	ft_split_trans_a(stacks, (char **){ft_split(temp, ' ')}, &temp);
 	if (!valid_numbers(stacks->a))
 	{
-		ft_printf("Error\n");
+		ft_printf_fd("Error\n", 2);
 		ft_exit(stacks);
 	}
 }
