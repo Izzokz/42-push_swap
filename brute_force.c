@@ -39,45 +39,49 @@ static void	sort_three(t_stacks *stacks)
 		ra(stacks);
 }
 
-static int	find_min_index(t_stacks *stacks)
+static int	is_sorted(t_stacks *stacks)
 {
-	int	min;
-	int	min_index;
-	int	i;
+	int		i;
+	long	prev_number;
 
-	min = stacks->a.list[0];
-	min_index = 0;
+	if (stacks->b.len != 0)
+		return (0);
+	prev_number = INT_MIN;
 	i = -1;
 	while (++i < stacks->a.len)
 	{
-		if (stacks->a.list[i] < min)
-		{
-			min = stacks->a.list[i];
-			min_index = i;
-		}
+		if (stacks->a.list[i] < prev_number)
+			return (0);
+		prev_number = stacks->a.list[i];
 	}
-	return (min_index);
+	return (1);
+}
+
+static int	is_sup_b(t_stacks *stacks)
+{
+	return (stacks->b.list[0] == 4
+		|| (stacks->b.len > 1 && stacks->b.list[0] == 3 && stacks->b.list[1] == 4));
 }
 
 void	ft_brute_force(t_stacks *stacks, int size)
 {
-	int	min_index;
-
 	if (size == 2)
 		return (ra(stacks));
 	else if (size == 5)
 	{
-		min_index = find_min_index(stacks);
-		while (min_index-- > 0)
-			ra(stacks);
 		pb(stacks);
-		min_index = find_min_index(stacks);
-		while (min_index-- > 0)
-			ra(stacks);
 		pb(stacks);
 		ft_brute_force(stacks, 3);
-		pa(stacks);
-		pa(stacks);
+		while (stacks->b.len)
+		{
+			while (!is_sup_b(stacks) && stacks->a.list[0] < stacks->b.list[0])
+				ra(stacks);
+			pa(stacks);
+			if (stacks->a.list[0] > stacks->a.list[1])
+				ra(stacks);
+		}
+		while (!is_sorted(stacks))
+			ra(stacks);
 		return ;
 	}
 	return (sort_three(stacks));
