@@ -60,7 +60,8 @@ static int	is_sorted(t_stacks *stacks)
 static int	is_sup_b(t_stacks *stacks)
 {
 	return (stacks->b.list[0] == 4
-		|| (stacks->b.len > 1 && stacks->b.list[0] == 3 && stacks->b.list[1] == 4));
+		|| (stacks->b.len > 1 && stacks->b.list[0] == 3
+			&& stacks->b.list[1] == 4));
 }
 
 void	ft_brute_force(t_stacks *stacks, int size)
